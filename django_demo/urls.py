@@ -16,7 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
+from hello import views as learn_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+
+    url(r'^hello/$',learn_view.index)#Django 1.8.x - Django 2.0 版本
+    # path('hello/',learn_view.index)#Django 2.0 版本
+
 ]
