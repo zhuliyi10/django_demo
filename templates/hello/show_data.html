@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}变量在网页的显示{% endblock %}
+
+{% block content %}
+<p>这里显示字符串:</p>
+{{string}}
+
+<p>这里显示列表:</p>
+{% for l in lanList %}
+    {{l}}{% if not forloop.last %},{% endif %}
+{% endfor %}
+{% for l2 in temList %}
+{% empty %}
+    <p>这是一个空列表</p>
+{% endfor%}
+
+<p>这里显示字典:</p>
+{% for key ,value in userDict.items %}
+    {{key}}:{{value}}
+{% endfor %}
+<br>
+{{request.user}}<br>
+{{request.path}}?{{request.GET.urlencode}}
+{% endblock %}

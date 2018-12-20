@@ -8,6 +8,13 @@ from django.urls import reverse
 def index(request):
     return render(request,'hello/index.html')
 
+#页面显示数据
+def show_data(request):
+    string = "我正在学习字符串在页面显示"
+    languageList=["java","php","python",'html','c#']
+    userDict={'name':'zhuly','age':26}
+    return render(request,'hello/show_data.html',{'string':string,'lanList':languageList,'userDict':userDict})
+
 # 采用 /add/?a=4&b=5 这样GET方法进行
 def add(request):
     a = request.GET['a']

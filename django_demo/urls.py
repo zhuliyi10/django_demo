@@ -28,5 +28,6 @@ urlpatterns = [
     url(r'^add/$',hello_view.add,name='add'),#采用 /add/?a=4&b=5 这样GET方法进行
     url(r'^add/(\d+)/(\d+)/$',hello_view.add2),#跳转到新的地址
     url(r'^new_add/(\d+)/(\d+)/$',hello_view.add2,name='add2'),#采用 /add/3/4/ 这样的网址的方式
+    url(r'^data/$',hello_view.show_data,name='data')
 
 ]
