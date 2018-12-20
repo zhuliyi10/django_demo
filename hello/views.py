@@ -2,11 +2,12 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from hello.models import Person,User
 # Create your views here.
 
 
 def index(request):
-    return render(request,'hello/index.html')
+    return render(request,'hello/login.html')
 
 #页面显示数据
 def show_data(request):
@@ -30,3 +31,17 @@ def add2(request, a, b):
 #重定向
 def old_add2_redirect(request,a,b):
     return HttpResponseRedirect(reverse('add2',args=(a,b)))
+
+def login(request):
+    user= User.objects.get(name=request.POST['name'])
+    if user.pwd==request.POST['pwd']:
+        sess=request.session[user.name]
+        if sess:
+            return HttpResponse("你已经登陆")
+        else:
+            request.session[user.name]=user.name
+            return HttpResponse("登陆成功")
+    else:
+        return HttpResponse("账号和密码匹配")
+
+

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}django 登陆{% endblock %}
+
+{% block content %}
+<p>请输入登陆账号和密码</p>
+<form action="/login/" method="POST">
+ {% csrf_token %}
+    账号:<input type="text" name="name"><br>
+    密码:<input type="text" name="pwd"><br>
+
+    <input type="submit" value='登陆'>
+</form>
+{% endblock %}
