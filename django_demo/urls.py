@@ -16,13 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
-from hello import views as learn_view
+from hello import views as hello_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
 
-    url(r'^hello/$',learn_view.index)#Django 1.8.x - Django 2.0 版本
-    # path('hello/',learn_view.index)#Django 2.0 版本
+    url(r'^index/$',hello_view.index),#Django 1.8.x - Django 2.0 版本
+    # path('index/',hello_view.index)#Django 2.0 版本
+
+    url(r'^add/$',hello_view.add,name='add'),#采用 /add/?a=4&b=5 这样GET方法进行
+    url(r'^add/(\d+)/(\d+)/$',hello_view.add2),#跳转到新的地址
+    url(r'^new_add/(\d+)/(\d+)/$',hello_view.add2,name='add2'),#采用 /add/3/4/ 这样的网址的方式
 
 ]
