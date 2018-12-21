@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>输入两个数字</title>
+    <script>
+        function ajax_request() {
+            var xmlhttp;
+            if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById("result").innerHTML = xmlhttp.responseText;
+                }
+            }
+            var a = document.getElementById("a").value;
+            var b = document.getElementById("b").value;
+            xmlhttp.open("GET", "/add/" + a + "/" + b + "/", true);
+            xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+            xmlhttp.send();
+
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <p>输入两个数字</p>
+    <form>
+        a:<input type="text" id="a"><br>
+
+        b:<input type="text" id="b"><br>
+
+        <p>result: <span id='result'></span></p>
+
+        <button type="button" id="sum">求和</button>
+    </form>
+    <div id="dict">Ajax 加载字典</div>
+    <p id="dict_result"></p>
+
+    <div id="list">Ajax 加载列表</div>
+    <p id="list_result"></p>
+    <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#sum").click(function () {
+                var a = $("#a").val();
+                var b = $("#b").val();
+                $.get("/add/", { 'a': a, 'b': b }, function (ret) {
+                    $("#result").html(ret)
+                })
+
+            });
+
+
+        });
+
+        $("#dict").click(function(){
+            $.getJSON("{% url 'ajax' %}",function(ret){
+                $("#dict_result").append(ret.twz+'<br>').append(ret.zqxt+'<br>')
+            })
+        });
+    </script>
+</body>
+
+</html>

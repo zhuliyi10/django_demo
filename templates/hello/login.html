@@ -3,6 +3,13 @@
 {% block title %}django 登陆{% endblock %}
 
 {% block content %}
+
+{% if request.session.recent %}
+<p>hello {{request.session.recent}}</p>
+<form action="/logout/" method="POST">
+    {% csrf_token %}
+    <input type="submit" value='退出登陆'>
+{% else %}
 <p>请输入登陆账号和密码</p>
 <form action="/login/" method="POST">
  {% csrf_token %}
@@ -11,4 +18,5 @@
 
     <input type="submit" value='登陆'>
 </form>
+{% endif %}
 {% endblock %}

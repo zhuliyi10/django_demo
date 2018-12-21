@@ -22,12 +22,15 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
 
-    url(r'^index/$',hello_view.index),#Django 1.8.x - Django 2.0 版本
+    url(r'^index/$', hello_view.index),  # Django 1.8.x - Django 2.0 版本
     # path('index/',hello_view.index)#Django 2.0 版本
 
-    url(r'^add/$',hello_view.add,name='add'),#采用 /add/?a=4&b=5 这样GET方法进行
-    url(r'^add/(\d+)/(\d+)/$',hello_view.add2),#跳转到新的地址
-    url(r'^new_add/(\d+)/(\d+)/$',hello_view.add2,name='add2'),#采用 /add/3/4/ 这样的网址的方式
-    url(r'^data/$',hello_view.show_data,name='data'),
-    url(r'^login/$',hello_view.login,name='login'),#登陆
+    url(r'^add/$', hello_view.add, name='add'),  # 采用 /add/?a=4&b=5 这样GET方法进行
+    url(r'^add/(\d+)/(\d+)/$', hello_view.add2),  # 跳转到新的地址
+    url(r'^new_add/(\d+)/(\d+)/$', hello_view.add2,
+        name='add2'),  # 采用 /add/3/4/ 这样的网址的方式
+    url(r'^data/$', hello_view.show_data, name='data'),
+    url(r'^login/$', hello_view.login, name='login'),  # 登陆
+    url(r'^logout/$', hello_view.logout, name='logout'),  # 退出登陆
+    url(r'^ajax/$', hello_view.ajax, name='ajax'),  # ajax请求
 ]
